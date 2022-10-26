@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class tomorrow : Fragment() {
+class DetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -15,6 +15,16 @@ class tomorrow : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tomorrow, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val position = arguments?.getInt(ARG_POSITION) ?: 0
+
+    }
+
+    companion object {
+        const val ARG_POSITION = "ARG_POSITION"
     }
 
 }

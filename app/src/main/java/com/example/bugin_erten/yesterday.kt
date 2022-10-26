@@ -16,4 +16,13 @@ class yesterday : Fragment() {
         return inflater.inflate(R.layout.fragment_yesterday, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val position = arguments?.getInt(ARG_POSITION) ?: 2
+
+    }
+
+    companion object {
+        const val ARG_POSITION = "ARG_POSITION"
+    }
 }
