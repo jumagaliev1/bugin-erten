@@ -18,7 +18,7 @@ class today : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val position = arguments?.getInt(ARG_POSITION) ?: 1
+        val position = arguments?.getInt(ARG_POSITION) ?: 0
 
     }
 
