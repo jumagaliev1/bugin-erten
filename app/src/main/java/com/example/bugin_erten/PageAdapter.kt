@@ -4,18 +4,28 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.bugin_erten.DetailFragment.Companion.ARG_POSITION
 
 
-class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return 3
     }
 
 
     override fun getItem(position: Int): Fragment {
-        return DetailFragment().apply {
-            arguments = bundleOf(ARG_POSITION to position)
+        when (position) {
+            0 -> {
+                return tomorrow()
+            }
+            1 -> {
+                return today()
+            }
+            2 -> {
+                return yesterday()
+            }
+            else -> {
+                return today()
+            }
         }
     }
 

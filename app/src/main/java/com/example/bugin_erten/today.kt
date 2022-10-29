@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import timber.log.Timber
 
 class today : Fragment() {
 
@@ -13,17 +14,8 @@ class today : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Timber.i("today onCreateView called")
         return inflater.inflate(R.layout.fragment_today, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val position = arguments?.getInt(ARG_POSITION) ?: 0
-
-    }
-
-    companion object {
-        const val ARG_POSITION = "ARG_POSITION"
     }
 
 }

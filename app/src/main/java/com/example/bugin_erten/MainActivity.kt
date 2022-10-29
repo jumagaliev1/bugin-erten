@@ -13,6 +13,7 @@ import androidx.navigation.NavGraph
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Timber.i("onCreate called")
         navController = (supportFragmentManager
             .findFragmentById(R.id.activity_main_nav_host_fragment) as NavHostFragment)
             .navController

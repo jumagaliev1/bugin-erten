@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_days.*
+import timber.log.Timber
 
 class DaysFragment : Fragment() {
 
@@ -24,19 +25,21 @@ class DaysFragment : Fragment() {
 
     ): View {
         // Inflate the layout for this fragment
+        Timber.i("DaysFragment onCreateView called")
         _binding = FragmentDaysBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.viewPager.adapter = PageAdapter(parentFragmentManager)
+        Timber.i("DaysFragment onViewCreated called")
+        binding.viewPager.adapter = PageAdapter(childFragmentManager)
         binding.tabLayout.setupWithViewPager(viewPager)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Timber.i("DaysFragment onDestroyView called")
         _binding = null
     }
 }
