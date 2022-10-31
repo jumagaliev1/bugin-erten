@@ -33,8 +33,8 @@ class DaysFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.i("DaysFragment onViewCreated called")
-        binding.viewPager.adapter = PageAdapter(childFragmentManager)
-        binding.tabLayout.setupWithViewPager(viewPager)
+//        binding.viewPager.adapter = PageAdapter(childFragmentManager)
+//        binding.tabLayout.setupWithViewPager(viewPager)
     }
 
     override fun onDestroyView() {

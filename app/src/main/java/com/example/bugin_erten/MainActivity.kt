@@ -29,10 +29,5 @@ class MainActivity : AppCompatActivity() {
 
         setupWithNavController(binding.bottomNavigationView, navController)
 
-//        val viewPager = findViewById<ViewPager>(R.id.viewPager)
-//        viewPager.adapter = PageAdapter(supportFragmentManager)
-//
-//        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-//        tabLayout.setupWithViewPager(viewPager)
     }
 }
