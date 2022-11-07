@@ -1,34 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DaysFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
+    <data>
+        <variable
+            name="daysViewModel"
+            type="com.example.bugin_erten.DaysViewModel" />
+        <variable
+            name="newSize"
+            type="Float" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        tools:context=".DaysFragment">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Қара сөз - 18"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="40dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/qarasoz1"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="20dp"/>
-        </LinearLayout>
-    </ScrollView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:gravity="center"
+                    android:id="@+id/line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_increase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+" />
+                    <Button
+                        android:id="@+id/btn_decrease"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"/>
+                </LinearLayout>
 
 
-</FrameLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Қара сөз - 18"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="40dp" />
+
+                <TextView
+                    android:id="@+id/main_words"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/qarasoz1"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@{daysViewModel.textSize}"
+                   />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </FrameLayout>
+</layout>

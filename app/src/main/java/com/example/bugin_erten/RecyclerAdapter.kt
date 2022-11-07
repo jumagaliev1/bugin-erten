@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-
     private var title = arrayOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" )
     private var images = intArrayOf(R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
