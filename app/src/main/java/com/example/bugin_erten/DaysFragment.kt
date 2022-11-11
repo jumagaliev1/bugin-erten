@@ -1,10 +1,12 @@
 package com.example.bugin_erten
 
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings.TextSize
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -32,24 +34,25 @@ class DaysFragment : Fragment() {
         // Inflate the layout for this fragment
         Timber.i("DaysFragment onCreateView called")
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_days, container, false)
-        val btn_increase = binding.root.btn_increase as Button
-        val btn_decrease = binding.root.btn_decrease as Button
-        btn_increase.setOnClickListener {
-            viewModel.increaseSize()
-            showChangedSizeDialog()
-        }
-        btn_decrease.setOnClickListener {
-            viewModel.decreaseSize()
-            showChangedSizeDialog()
-        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btnIncrease.setOnClickListener {
+            viewModel.increaseSize()
+            showChangedSizeDialog()
+        }
+        binding.btnDecrease.setOnClickListener {
+            viewModel.decreaseSize()
+            showChangedSizeDialog()
+        }
+
         binding.daysViewModel = viewModel
-        binding.newSize = viewModel.textSize.value
         binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
+            binding.mainWords.setTextSize(TypedValue.COMPLEX_UNIT_SP, newSize)
+        }
 
 //        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
 //                binding.root.main_words.textSize = newSize

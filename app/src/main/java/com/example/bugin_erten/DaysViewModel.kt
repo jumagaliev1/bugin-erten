@@ -1,6 +1,7 @@
 package com.example.bugin_erten
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -9,7 +10,7 @@ class DaysViewModel: ViewModel() {
     private var textColor = "#000000"
     private var style = "bold"
     private val _textSize = MutableLiveData<Float>()
-    val textSize: MutableLiveData<Float> get() = _textSize
+    val textSize: LiveData<Float> get() = _textSize
 
     init {
         _textSize.value = 20.0f
