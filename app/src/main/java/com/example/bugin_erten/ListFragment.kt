@@ -31,11 +31,15 @@ class ListFragment : Fragment() {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         recyclerView.apply {
+            val data = ArrayList<ItemsViewModel>()
+            for (i in 1..45) {
+                data.add(ItemsViewModel(R.drawable.abay, "Qara soz " + i))
+            }
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = RecyclerAdapter()
+            adapter = RecyclerAdapter(data)
         }
     }
 }
