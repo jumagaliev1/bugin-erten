@@ -8,7 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class RecyclerAdapter(private val mList: List<ItemsViewModel>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(
+    private val mList: List<ItemsModel>,
+    private val onItemClick: (ItemsModel) -> Unit
+): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 //    private var title = arrayOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" )
 //    private var images = intArrayOf(R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -17,10 +20,13 @@ class RecyclerAdapter(private val mList: List<ItemsViewModel>): RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-        val ItemsViewModel = mList[position]
+        val model = mList[position]
 
-        holder.itemTitle.text = ItemsViewModel.text
-        holder.itemImage.setImageResource(ItemsViewModel.image)
+        holder.itemTitle.text = model.text
+        holder.itemImage.setImageResource(model.image)
+        holder.itemView.setOnClickListener {
+            onItemClick(model)
+        }
 
     }
 

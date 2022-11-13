@@ -14,10 +14,19 @@
         android:id="@+id/listFragment"
         android:name="com.example.bugin_erten.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_textFragment"
+            app:destination="@id/textFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.bugin_erten.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/textFragment"
+        android:name="com.example.bugin_erten.TextFragment"
+        android:label="fragment_text"
+        tools:layout="@layout/fragment_text" />
 </navigation>
