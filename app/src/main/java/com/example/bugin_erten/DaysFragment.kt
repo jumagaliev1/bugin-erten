@@ -12,12 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.bugin_erten.databinding.FragmentDaysBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.Tab
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_days.*
-import kotlinx.android.synthetic.main.fragment_days.view.*
 import timber.log.Timber
 
 class DaysFragment : Fragment() {
@@ -41,11 +35,11 @@ class DaysFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnIncrease.setOnClickListener {
             viewModel.increaseSize()
-            showChangedSizeDialog()
+           // showChangedSizeDialog()
         }
         binding.btnDecrease.setOnClickListener {
             viewModel.decreaseSize()
-            showChangedSizeDialog()
+           // showChangedSizeDialog()
         }
 
         binding.daysViewModel = viewModel
@@ -68,16 +62,16 @@ class DaysFragment : Fragment() {
         _binding = null
     }
 
-    private fun showChangedSizeDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Information!")
-            .setMessage("Your new Size ${viewModel.textSize.value}",)
-            .setCancelable(true)
-            .show()
-
-    }
-    fun changeSize() {
-        viewModel.changeSize()
-        showChangedSizeDialog()
-    }
+//    private fun showChangedSizeDialog() {
+//        MaterialAlertDialogBuilder(requireContext())
+//            .setTitle("Information!")
+//            .setMessage("Your new Size ${viewModel.textSize.value}",)
+//            .setCancelable(true)
+//            .show()
+//
+//    }
+//    fun changeSize() {
+//        viewModel.changeSize()
+//        showChangedSizeDialog()
+//    }
 }
