@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class RecyclerAdapter(
-    private val mList: List<ItemsModel>,
     private val onItemClick: (ItemsModel) -> Unit
 ): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+
+    private val mList = mutableListOf<ItemsModel>()
 //    private var title = arrayOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" )
 //    private var images = intArrayOf(R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -32,6 +33,12 @@ class RecyclerAdapter(
 
     override fun getItemCount(): Int {
         return mList.size
+    }
+
+    fun setData(newData: List<ItemsModel>) {
+        mList.clear()
+        mList.addAll(newData)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){

@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bugin_erten.databinding.FragmentListBinding
+import kotlinx.android.synthetic.main.card_layout.view.*
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_text.view.*
 import timber.log.Timber
 
 
@@ -20,7 +23,7 @@ class ListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ListViewModel by viewModels()
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    private var adapter: RecyclerAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,12 +52,19 @@ class ListFragment : Fragment() {
 
         // set a LinearLayoutManager to handle Android
         // RecyclerView behavior
-        viewModel.itemCount()
+        //binding.recyclerView.adapter?.itemCount
+
         // set the custom adapter to the RecyclerView
-        adapter = RecyclerAdapter(viewModel.data) { model ->
+        adapter = RecyclerAdapter { model ->
             this@ListFragment.findNavController().navigate(R.id.action_listFragment_to_textFragment)
         }
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        viewModel.data.observe(viewLifecycleOwner) {
+                newCount ->
+            if (newCount != null) {
+                adapter?.setData(newCount)
+            }
+        }
     }
 }
