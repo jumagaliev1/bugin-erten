@@ -21,7 +21,7 @@ interface QaraSozDao {
     fun clear()
 
     @Query("DELETE FROM qarasozder_table WHERE sozId = :key")
-    suspend fun delete(key: Long): QaraSoz?
+    suspend fun delete(key: Long)
 
     @Query("SELECT * FROM qarasozder_table ORDER BY sozId DESC")
     fun getAll(): LiveData<List<QaraSoz>>

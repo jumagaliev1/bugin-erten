@@ -1,6 +1,8 @@
 package com.example.bugin_erten
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,18 +41,40 @@ class DaysFragment : Fragment() {
         val viewModelFactory = DaysViewModelFactory(dataSource, application)
         viewModel =
             ViewModelProvider(
-                this, viewModelFactory)[DaysViewModel::class.java]
+                this, viewModelFactory
+            )[DaysViewModel::class.java]
 
 
-        val btn_increase = binding.root.btn_increase as Button
-        val btn_decrease = binding.root.btn_decrease as Button
-        btn_increase.setOnClickListener {
+        binding.root.btn_increase.setOnClickListener {
             viewModel.increaseSize()
-            showChangedSizeDialog()
+            if (viewModel.textSize.value == 50.0f)
+                showChangedSizeDialog()
         }
-        btn_decrease.setOnClickListener {
+        binding.root.btn_decrease.setOnClickListener {
             viewModel.decreaseSize()
-            showChangedSizeDialog()
+            if (viewModel.textSize.value == 20.0f)
+                showChangedSizeDialog()
+        }
+        binding.root.btn_fontChange.setOnClickListener {
+            viewModel.changeFontFamily()
+            //binding.mainWords.setTypeface(Typeface.SANS_SERIF, Typeface.ITALIC)
+            //binding.mainWords.setTypeface(Typeface.MONOSPACE, Typeface.ITALIC)
+            binding.mainWords.setTypeface(
+                Typeface.create(
+                    viewModel.fontFamily.value,
+                    viewModel.fontStyle.value!!
+                )
+            )
+            //binding.btnFontChange.setText(viewModel.fontFamily.value)
+        }
+        binding.root.btn_fontStyle.setOnClickListener {
+            viewModel.changeFontStyle()
+            binding.mainWords.setTypeface(
+                Typeface.create(
+                    viewModel.fontFamily.value,
+                    viewModel.fontStyle.value!!
+                )
+            )
         }
         return binding.root
     }
@@ -61,6 +85,9 @@ class DaysFragment : Fragment() {
         binding.daysViewModel = viewModel
         binding.newSize = viewModel.textSize.value
         binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
+            binding.mainWords.setTextSize(TypedValue.COMPLEX_UNIT_SP, newSize)
+        }
 //        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
 //                binding.root.main_words.textSize = newSize
 //        }
@@ -77,12 +104,13 @@ class DaysFragment : Fragment() {
 
     private fun showChangedSizeDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Information!")
-            .setMessage("Your new Size ${viewModel.textSize.value}",)
+            .setTitle("Limitation!")
+            .setMessage("Your Size ${viewModel.textSize.value} (Max:50 Min:20)")
             .setCancelable(true)
             .show()
 
     }
+
     fun changeSize() {
         viewModel.changeSize()
         showChangedSizeDialog()

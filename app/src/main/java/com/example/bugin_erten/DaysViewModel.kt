@@ -1,6 +1,7 @@
 package com.example.bugin_erten
 
 import android.app.Application
+import android.graphics.Typeface
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +20,25 @@ class DaysViewModel(val database: QaraSozDao,
     val textSize: MutableLiveData<Float> get() = _textSize
     private val _qaraSoz = MutableLiveData<QaraSoz?>()
     val qaraSoz: MutableLiveData<QaraSoz?> get() = _qaraSoz
+
+    //Font Family vars
+    private val _fontFamily = MutableLiveData<String>()
+    val fontFamily: MutableLiveData<String> get() = _fontFamily
+
+    private  val _titleFont = MutableLiveData<String>()
+    val titleFont: MutableLiveData<String> get() = _titleFont
+
+    private val fonts: Array<String> = arrayOf("sans-serif", "sans-serif-light", "sans-serif-condensed", "sans-serif-black", "sans-serif-thin","sans-serif-medium")
+    private var fontIdx = 0
+    //Font Style vars
+    private val _fontStyle = MutableLiveData<Int>()
+    val fontStyle: MutableLiveData<Int> get() = _fontStyle
+
+    private  val _styleTitle = MutableLiveData<String>()
+    val styleTitle: MutableLiveData<String> get() = _styleTitle
+
+    private val fontStyles: Array<Int> = arrayOf(Typeface.NORMAL, Typeface.ITALIC)
+    private var fontStyleIdx = 0
     init {
         _textSize.value = 20.0f
 //        viewModelScope.launch {
@@ -28,7 +48,12 @@ class DaysViewModel(val database: QaraSozDao,
 //                    "\n" +
 //                    "Мұның бәрі - масқаралық, ақымақтық. Мұны адам бір ойламасын, егерде бір ойласа, қайта адам болмағы - қиын іс. Кербез дегенді осындай кер, кердең немеден безіңдер деген сөзге ұқсатамын. Тегінде, адам баласы адам баласынан ақыл, ғылым, ар, мінез деген нәрселермен озбақ. Онан басқа нәрсеменен оздым ғой демектің бәрі де - ақымақтық."))
 //        }
+        _fontFamily.value = fonts[fontIdx]
+        _fontStyle.value = fontStyles[fontStyleIdx]
+        _titleFont.value = "NORMAL"
+        _styleTitle.value = "NORMAL"
         initializeQaraSoz()
+
     }
 
     fun changeSize() {
@@ -60,6 +85,23 @@ class DaysViewModel(val database: QaraSozDao,
         var soz = database.get(1)
 
         return soz
+    }
+
+    fun changeFontFamily() {
+        fontIdx = (fontIdx + 1)%fonts.size
+        _fontFamily.value = fonts[fontIdx]
+        titleFont.value = fontFamily.value?.replace("sans-serif-", "")
+        if (titleFont.value == "sans-serif")
+            titleFont.value = "normal"
+    }
+
+    fun changeFontStyle() {
+        fontStyleIdx = (fontStyleIdx + 1)%fontStyles.size
+        _fontStyle.value = fontStyles[fontStyleIdx]
+        if (_fontStyle.value == Typeface.NORMAL)
+            _styleTitle.value = "NORMAL"
+        else
+            _styleTitle.value = "ITALIC"
     }
 
 
