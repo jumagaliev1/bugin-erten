@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Қара сөз - 18"
+                    android:text="@{daysViewModel.qaraSoz.qaraSozTitle}"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="40dp" />
@@ -57,7 +57,7 @@
                     android:id="@+id/main_words"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/qarasoz1"
+                    android:text="@{daysViewModel.qaraSoz.qaraSozText}"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="@{daysViewModel.textSize}"

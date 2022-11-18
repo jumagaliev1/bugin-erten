@@ -9,16 +9,19 @@ import androidx.room.Update
 @Dao
 interface QaraSozDao {
     @Insert
-    fun insert(qaraSoz: QaraSoz)
+    suspend fun insert(qaraSoz: QaraSoz)
 
     @Update
-    fun update(qaraSoz: QaraSoz)
+    suspend fun update(qaraSoz: QaraSoz)
 
     @Query("SELECT * from qarasozder_table WHERE sozId = :key")
-    fun get(key: Long): QaraSoz?
+    suspend fun get(key: Long): QaraSoz?
 
     @Query("DELETE FROM qarasozder_table")
     fun clear()
+
+    @Query("DELETE FROM qarasozder_table WHERE sozId = :key")
+    suspend fun delete(key: Long): QaraSoz?
 
     @Query("SELECT * FROM qarasozder_table ORDER BY sozId DESC")
     fun getAll(): LiveData<List<QaraSoz>>
