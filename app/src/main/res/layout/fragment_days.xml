@@ -34,21 +34,32 @@
 
                     <Button
                         android:id="@+id/btn_increase"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+" />
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="&#11014;" />
+                    <Button
+                        android:id="@+id/btn_fontChange"
+                        android:text="@{daysViewModel.titleFont}"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"/>
                     <Button
                         android:id="@+id/btn_decrease"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"/>
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:text="&#11015;"/>
                 </LinearLayout>
+                <Button
+                    android:id="@+id/btn_fontStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{daysViewModel.styleTitle}"
+                    android:layout_height="wrap_content"/>
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Қара сөз - 18"
+                    android:text="@{daysViewModel.qaraSoz.qaraSozTitle}"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="40dp" />
@@ -57,10 +68,10 @@
                     android:id="@+id/main_words"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/qarasoz1"
+                    android:text="@{daysViewModel.qaraSoz.qaraSozText}"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:textSize="@{daysViewModel.textSize}"
+                    android:textSize="20sp"
                    />
 
             </LinearLayout>
