@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
+import com.example.bugin_erten.database.QaraSozDatabase
 import com.example.bugin_erten.databinding.FragmentDaysBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
@@ -23,7 +25,7 @@ class DaysFragment : Fragment() {
     private var _binding: FragmentDaysBinding? = null
     private val binding: FragmentDaysBinding get() = _binding!!
 
-    private val viewModel: DaysViewModel by viewModels()
+    private lateinit var viewModel: DaysViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +34,14 @@ class DaysFragment : Fragment() {
         // Inflate the layout for this fragment
         Timber.i("DaysFragment onCreateView called")
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_days, container, false)
+        val application = requireNotNull(this.activity).application
+        val dataSource = QaraSozDatabase.getInstance(application).qaraSozDao
+        val viewModelFactory = DaysViewModelFactory(dataSource, application)
+        viewModel =
+            ViewModelProvider(
+                this, viewModelFactory)[DaysViewModel::class.java]
+
+
         val btn_increase = binding.root.btn_increase as Button
         val btn_decrease = binding.root.btn_decrease as Button
         btn_increase.setOnClickListener {
@@ -47,10 +57,10 @@ class DaysFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.daysViewModel = viewModel
         binding.newSize = viewModel.textSize.value
         binding.lifecycleOwner = viewLifecycleOwner
-
 //        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
 //                binding.root.main_words.textSize = newSize
 //        }

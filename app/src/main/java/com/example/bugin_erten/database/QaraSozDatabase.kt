@@ -14,7 +14,7 @@ abstract class QaraSozDatabase:RoomDatabase() {
         @Volatile
         private var INSTANCE: QaraSozDatabase? = null
 
-        fun getInstanse(context: Context): QaraSozDatabase {
+        fun getInstance(context: Context): QaraSozDatabase {
             synchronized(this) {
                 var instance = INSTANCE
 
