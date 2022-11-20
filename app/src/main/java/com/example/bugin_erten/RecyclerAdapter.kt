@@ -7,21 +7,36 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-    private var title = arrayOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" )
-    private var images = intArrayOf(R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay)
+class RecyclerAdapter(
+    private val onItemClick: (ItemsModel) -> Unit
+): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+
+    private val mList = mutableListOf<ItemsModel>()
+    //    private var title = arrayOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" )
+//    private var images = intArrayOf(R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay, R.drawable.abay, R.drawable.abay,R.drawable.abay)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-        holder.itemTitle.text = title[position]
-        holder.itemImage.setImageResource(images[position])
+        val model = mList[position]
+
+        holder.itemTitle.text = model.text
+        holder.itemImage.setImageResource(model.image)
+        holder.itemView.setOnClickListener {
+            onItemClick(model)
+        }
+
     }
 
     override fun getItemCount(): Int {
-        return title.size
+        return mList.size
+    }
+    fun setData(newData: List<ItemsModel>) {
+        mList.clear()
+        mList.addAll(newData)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){
