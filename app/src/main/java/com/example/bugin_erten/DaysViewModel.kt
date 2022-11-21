@@ -78,7 +78,6 @@ class DaysViewModel(val database: QaraSozDao,
         viewModelScope.launch {
             _qaraSoz.value = getQaraSozFromDatabase()
         }
-        println(qaraSoz.value?.qaraSozText)
     }
 
     private suspend fun getQaraSozFromDatabase(): QaraSoz? {
