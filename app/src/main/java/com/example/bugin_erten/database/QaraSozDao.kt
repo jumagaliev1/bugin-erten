@@ -1,6 +1,7 @@
 package com.example.bugin_erten.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -23,6 +24,6 @@ interface QaraSozDao {
     @Query("DELETE FROM qarasozder_table WHERE sozId = :key")
     suspend fun delete(key: Long)
 
-    @Query("SELECT * FROM qarasozder_table ORDER BY sozId DESC")
-    fun getAll(): LiveData<List<QaraSoz>>
+    @Query("SELECT * FROM qarasozder_table")
+    fun getAll(): LiveData<List<QaraSoz?>>
 }

@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bugin_erten.database.QaraSozDatabase
 import com.example.bugin_erten.databinding.FragmentListBinding
 import kotlinx.android.synthetic.main.fragment_list.*
 import timber.log.Timber
@@ -17,7 +19,7 @@ class ListFragment : Fragment() {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ListViewModel by viewModels()
+    private lateinit var viewModel: ListViewModel
     private var adapter: RecyclerAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +27,16 @@ class ListFragment : Fragment() {
     ): View {
         Timber.i("ListFragment onCreateView called")
         // Inflate the layout for this fragment
+        val application = requireNotNull(this.activity).application
+        val dataSource = QaraSozDatabase.getInstance(application).qaraSozDao
+        val viewModelFactory = ListViewModelFactory(dataSource, application)
+        viewModel =
+            ViewModelProvider(
+                this, viewModelFactory
+            )[ListViewModel::class.java]
+
         _binding = FragmentListBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -63,5 +74,9 @@ override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
             adapter?.setData(newCount)
         }
     }
+    viewModel.qaraSozList.observe(viewLifecycleOwner) {
+        adapter?.setData(it.map { ItemsModel(R.drawable.abay, it?.qaraSozTitle ?: "Unknown") })
+    }
+
 }
 }
