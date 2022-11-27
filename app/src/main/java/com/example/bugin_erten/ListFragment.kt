@@ -36,6 +36,7 @@ class ListFragment : Fragment() {
             )[ListViewModel::class.java]
 
         _binding = FragmentListBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -72,6 +73,9 @@ override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         if (newCount != null) {
             adapter?.setData(newCount)
         }
+    }
+    viewModel.qaraSozList.observe(viewLifecycleOwner) {
+        adapter?.setData(it.map { ItemsModel(R.drawable.abay, it?.qaraSozTitle ?: "Unknown") })
     }
 
 }

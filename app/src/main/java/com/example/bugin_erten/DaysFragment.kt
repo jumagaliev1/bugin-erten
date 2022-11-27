@@ -1,5 +1,6 @@
 package com.example.bugin_erten
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
@@ -67,14 +68,11 @@ class DaysFragment : Fragment() {
             )
             //binding.btnFontChange.setText(viewModel.fontFamily.value)
         }
-        binding.root.btn_fontStyle.setOnClickListener {
-            viewModel.changeFontStyle()
-            binding.mainWords.setTypeface(
-                Typeface.create(
-                    viewModel.fontFamily.value,
-                    viewModel.fontStyle.value!!
-                )
-            )
+        binding.root.btn_gray.setOnClickListener {
+            viewModel.changeColor2Gray()
+        }
+        binding.root.btn_white.setOnClickListener {
+            viewModel.changeColor2White()
         }
         return binding.root
     }
@@ -87,6 +85,9 @@ class DaysFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
             binding.mainWords.setTextSize(TypedValue.COMPLEX_UNIT_SP, newSize)
+        }
+        viewModel.color.observe(viewLifecycleOwner) { newColor ->
+            binding.frameLayout.setBackgroundColor(Color.parseColor(newColor))
         }
 //        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
 //                binding.root.main_words.textSize = newSize

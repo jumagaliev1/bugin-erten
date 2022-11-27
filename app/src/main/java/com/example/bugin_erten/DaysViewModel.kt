@@ -16,6 +16,10 @@ class DaysViewModel(val database: QaraSozDao,
 
     private var textColor = "#000000"
     private var style = "bold"
+
+    private val _color = MutableLiveData<String>()
+    val color: MutableLiveData<String> get() = _color
+
     private val _textSize = MutableLiveData<Float>()
     val textSize: MutableLiveData<Float> get() = _textSize
     private val _qaraSoz = MutableLiveData<QaraSoz?>()
@@ -53,6 +57,7 @@ class DaysViewModel(val database: QaraSozDao,
         _titleFont.value = "NORMAL"
         _styleTitle.value = "NORMAL"
         initializeQaraSoz()
+        _color.value = "#FFFFFFFF"
 
     }
 
@@ -102,6 +107,14 @@ class DaysViewModel(val database: QaraSozDao,
         else
             _styleTitle.value = "ITALIC"
     }
+
+    fun changeColor2White() {
+        _color.value = "#FFFFFFFF"
+    }
+    fun changeColor2Gray() {
+        _color.value = "#C9DDCE9B"
+    }
+
 
 
 }
