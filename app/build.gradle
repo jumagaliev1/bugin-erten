@@ -69,8 +69,21 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
 
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
 // Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$room_version"
+//    implementation "androidx.room:room-ktx:$room_version"
+    //Retrofit
+  def version_retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+
+    //Moshi
+    def version_moshi = "1.8.0"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+//    Glide
+    def version_glide = "4.8.0"
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+
 }
