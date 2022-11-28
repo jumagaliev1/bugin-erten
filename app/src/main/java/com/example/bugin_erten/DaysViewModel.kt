@@ -4,12 +4,19 @@ import android.app.Application
 import android.graphics.Typeface
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bugin_erten.database.QaraSoz
 import com.example.bugin_erten.database.QaraSozDao
+import com.example.bugin_erten.network.MarsApi
+import com.example.bugin_erten.network.MarsProperty
+import com.example.bugin_erten.network.QaraSozProperty
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DaysViewModel(val database: QaraSozDao,
             application: Application): AndroidViewModel(application) {
@@ -43,6 +50,15 @@ class DaysViewModel(val database: QaraSozDao,
 
     private val fontStyles: Array<Int> = arrayOf(Typeface.NORMAL, Typeface.ITALIC)
     private var fontStyleIdx = 0
+
+    private val _response = MutableLiveData<String>()
+    val response: LiveData<String>
+        get() = _response
+
+    private val _property = MutableLiveData<QaraSozProperty>()
+
+    val property: LiveData<QaraSozProperty>
+        get() = _property
     init {
         _textSize.value = 20.0f
 //        viewModelScope.launch {
@@ -58,6 +74,7 @@ class DaysViewModel(val database: QaraSozDao,
         _styleTitle.value = "NORMAL"
         initializeQaraSoz()
         _color.value = "#FFFFFFFF"
+        getProperties()
 
     }
 
@@ -113,6 +130,22 @@ class DaysViewModel(val database: QaraSozDao,
     }
     fun changeColor2Gray() {
         _color.value = "#C9DDCE9B"
+    }
+
+    private fun getProperties() {
+        viewModelScope.launch {
+            try {
+                val listResult = MarsApi.retrofitService.getProperties()
+              //  _response.value = "Success: ${listResult} Mars properties retrieved"
+//                if (listResult.isNotEmpty()) {
+//                    _property.value = listResult[0]
+//                }
+                _property.value = listResult
+
+            } catch (e: Exception) {
+                _response.value = "Failure: ${e.message}"
+            }
+        }
     }
 
 
