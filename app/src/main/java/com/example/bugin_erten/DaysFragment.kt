@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.bugin_erten.database.QaraSozDatabase
 import com.example.bugin_erten.databinding.FragmentDaysBinding
+import com.example.bugin_erten.repository.QaraSozRepository
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
@@ -39,7 +40,8 @@ class DaysFragment : Fragment() {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_days, container, false)
         val application = requireNotNull(this.activity).application
         val dataSource = QaraSozDatabase.getInstance(application).qaraSozDao
-        val viewModelFactory = DaysViewModelFactory(dataSource, application)
+        val repository = QaraSozRepository(dataSource)
+        val viewModelFactory = DaysViewModelFactory(repository, application)
         viewModel =
             ViewModelProvider(
                 this, viewModelFactory

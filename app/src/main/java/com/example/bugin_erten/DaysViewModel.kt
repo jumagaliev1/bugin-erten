@@ -9,16 +9,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bugin_erten.database.QaraSoz
-import com.example.bugin_erten.database.QaraSozDao
 import com.example.bugin_erten.network.MarsApi
 import com.example.bugin_erten.network.MarsProperty
 import com.example.bugin_erten.network.QaraSozProperty
+import com.example.bugin_erten.repository.QaraSozRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DaysViewModel(val database: QaraSozDao,
+class DaysViewModel(val repository: QaraSozRepository,
             application: Application): AndroidViewModel(application) {
 
     private var textColor = "#000000"
@@ -103,7 +103,7 @@ class DaysViewModel(val database: QaraSozDao,
     }
 
     private suspend fun getQaraSozFromDatabase(): QaraSoz? {
-        var soz = database.get(1)
+        var soz = repository.getById(1)
 
         return soz
     }
