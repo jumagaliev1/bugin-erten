@@ -68,14 +68,9 @@ override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
     }
     binding.recyclerView.adapter = adapter
     binding.recyclerView.layoutManager = LinearLayoutManager(activity)
-    viewModel.data.observe(viewLifecycleOwner) {
-            newCount ->
-        if (newCount != null) {
-            adapter?.setData(newCount)
-        }
-    }
+
     viewModel.qaraSozList.observe(viewLifecycleOwner) {
-        adapter?.setData(it.map { ItemsModel(R.drawable.abay, it?.qaraSozTitle ?: "Unknown") })
+        adapter?.submitList(it)
     }
 
 }

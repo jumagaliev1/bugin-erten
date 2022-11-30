@@ -10,10 +10,7 @@ class ListViewModel(
     val database: QaraSozDao,
     application: Application
 ) : AndroidViewModel(application) {
-    private val _data = MutableLiveData<List<ItemsModel>>(emptyList())
-    val data: LiveData<List<ItemsModel>> get() = _data
     val qaraSozList: LiveData<List<QaraSoz?>> = database.getAll()
-    private val _qaraSoz = MutableLiveData<QaraSoz?>()
 
 
 
