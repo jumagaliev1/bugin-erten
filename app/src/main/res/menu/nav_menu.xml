@@ -12,6 +12,6 @@
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settiongs" />
+        android:title="Settings" />
 
 </menu>

@@ -20,13 +20,12 @@
             app:destination="@id/textFragment" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.bugin_erten.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
         android:id="@+id/textFragment"
         android:name="com.example.bugin_erten.TextFragment"
         android:label="fragment_text"
         tools:layout="@layout/fragment_text" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.bugin_erten.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
