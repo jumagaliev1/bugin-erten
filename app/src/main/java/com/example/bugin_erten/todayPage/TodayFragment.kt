@@ -1,4 +1,4 @@
-package com.example.bugin_erten
+package com.example.bugin_erten.todayPage
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -8,28 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
+import com.example.bugin_erten.R
 import com.example.bugin_erten.database.QaraSozDatabase
 import com.example.bugin_erten.databinding.FragmentDaysBinding
 import com.example.bugin_erten.repository.QaraSozRepository
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.Tab
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_days.*
 import kotlinx.android.synthetic.main.fragment_days.view.*
 import timber.log.Timber
 
-class DaysFragment : Fragment() {
+class TodayFragment : Fragment() {
 
     private var _binding: FragmentDaysBinding? = null
     private val binding: FragmentDaysBinding get() = _binding!!
 
-    private lateinit var viewModel: DaysViewModel
+    private lateinit var viewModel: TodayViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,11 +35,11 @@ class DaysFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = QaraSozDatabase.getInstance(application).qaraSozDao
         val repository = QaraSozRepository(dataSource)
-        val viewModelFactory = DaysViewModelFactory(repository, application)
+        val viewModelFactory = TodayViewModelFactory(repository, application)
         viewModel =
             ViewModelProvider(
                 this, viewModelFactory
-            )[DaysViewModel::class.java]
+            )[TodayViewModel::class.java]
 
 
         binding.root.btn_increase.setOnClickListener {
@@ -91,12 +85,7 @@ class DaysFragment : Fragment() {
         viewModel.color.observe(viewLifecycleOwner) { newColor ->
             binding.frameLayout.setBackgroundColor(Color.parseColor(newColor))
         }
-//        viewModel.textSize.observe(viewLifecycleOwner) { newSize ->
-//                binding.root.main_words.textSize = newSize
-//        }
         Timber.i("DaysFragment onViewCreated called")
-//        binding.viewPager.adapter = PageAdapter(childFragmentManager)
-//        binding.tabLayout.setupWithViewPager(viewPager)
     }
 
     override fun onDestroyView() {

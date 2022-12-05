@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/daysFragment"
-        android:name="com.example.bugin_erten.DaysFragment"
+        android:name="com.example.bugin_erten.todayPage.TodayFragment"
         android:label="fragment_days"
         tools:layout="@layout/fragment_days" />
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.bugin_erten.ListFragment"
+        android:name="com.example.bugin_erten.listPage.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -21,13 +21,13 @@
     </fragment>
     <fragment
         android:id="@+id/textFragment"
-        android:name="com.example.bugin_erten.TextFragment"
+        android:name="com.example.bugin_erten.listPage.text.TextFragment"
         android:label="fragment_text"
         tools:layout="@layout/fragment_text" >
         <argument android:name="id" app:argType="long"/>
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.bugin_erten.SettingsFragment"
+        android:name="com.example.bugin_erten.settingsPage.SettingsFragment"
         android:label="SettingsFragment" />
 </navigation>
