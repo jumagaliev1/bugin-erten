@@ -1,4 +1,4 @@
-package com.example.bugin_erten
+package com.example.bugin_erten.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import com.example.bugin_erten.databinding.ActivityMainBinding
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.example.bugin_erten.R
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
