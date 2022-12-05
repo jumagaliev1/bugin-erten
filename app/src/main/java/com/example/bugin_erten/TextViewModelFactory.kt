@@ -4,17 +4,15 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.bugin_erten.database.QaraSozDao
-import com.example.bugin_erten.repository.QaraSozRepository
 
-
-class DaysViewModelFactory (
-    private val dataSource: QaraSozRepository,
-    private val application: Application) : ViewModelProvider.Factory {
+class TextViewModelFactory(
+    private val sozKey: Long,
+    private val dataSource: QaraSozDao) : ViewModelProvider.Factory {
         @Suppress("unchecked_cast")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(DaysViewModel::class.java)) {
-                return DaysViewModel(dataSource, application) as T
+            if (modelClass.isAssignableFrom(TextViewModel::class.java)) {
+                return TextViewModel(sozKey, dataSource) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
-        }
+    }
 }

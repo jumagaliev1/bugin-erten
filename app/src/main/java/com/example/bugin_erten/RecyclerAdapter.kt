@@ -30,6 +30,7 @@ class RecyclerAdapter(
         val model = getItem(position)
 
         holder.binding.itemTitle.text = model.qaraSozTitle
+
      //   holder.itemImage.setImageResource(model.image)
         holder.itemView.setOnClickListener {
             onItemClick(model)
@@ -83,4 +84,8 @@ class RecyclerAdapterDiffCallback : DiffUtil.ItemCallback<QaraSoz>() {
     override fun areContentsTheSame(oldItem: QaraSoz, newItem: QaraSoz): Boolean {
         return oldItem == newItem
     }
+}
+
+class QaraSozListener(val clickListener: (textId: Long) -> Unit) {
+    fun onClick(soz: QaraSoz) = clickListener(soz.sozId)
 }

@@ -11,8 +11,4 @@ class ListViewModel(
     application: Application
 ) : AndroidViewModel(application) {
     val qaraSozList: LiveData<List<QaraSoz?>> = database.getAll()
-
-
-
-
 }
