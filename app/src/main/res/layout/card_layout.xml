@@ -6,7 +6,9 @@
             <variable
                 name="qaraSoz"
                 type="com.example.bugin_erten.database.QaraSoz"/>
-
+            <variable
+                name="clickListener"
+                type="com.example.bugin_erten.QaraSozListener" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -18,6 +18,9 @@ interface QaraSozDao {
     @Query("SELECT * from qarasozder_table WHERE sozId = :key")
     suspend fun get(key: Long): QaraSoz?
 
+    @Query("SELECT * from qarasozder_table WHERE sozId = :key")
+    fun getSozWithId(key: Long): LiveData<QaraSoz>
+
     @Query("DELETE FROM qarasozder_table")
     fun clear()
 

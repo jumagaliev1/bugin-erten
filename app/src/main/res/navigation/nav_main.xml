@@ -23,7 +23,9 @@
         android:id="@+id/textFragment"
         android:name="com.example.bugin_erten.TextFragment"
         android:label="fragment_text"
-        tools:layout="@layout/fragment_text" />
+        tools:layout="@layout/fragment_text" >
+        <argument android:name="id" app:argType="long"/>
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.bugin_erten.SettingsFragment"

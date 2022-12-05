@@ -64,7 +64,7 @@ override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
 
     adapter = RecyclerAdapter { model ->
-        this@ListFragment.findNavController().navigate(R.id.action_listFragment_to_textFragment)
+        this@ListFragment.findNavController().navigate(ListFragmentDirections.actionListFragmentToTextFragment(model.sozId))
     }
     binding.recyclerView.adapter = adapter
     binding.recyclerView.layoutManager = LinearLayoutManager(activity)
