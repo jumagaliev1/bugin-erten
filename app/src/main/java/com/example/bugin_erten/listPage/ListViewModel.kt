@@ -1,10 +1,9 @@
-package com.example.bugin_erten
+package com.example.bugin_erten.listPage
 
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.bugin_erten.database.QaraSoz
 import com.example.bugin_erten.database.QaraSozDao
-import kotlinx.coroutines.launch
 
 class ListViewModel(
     val database: QaraSozDao,

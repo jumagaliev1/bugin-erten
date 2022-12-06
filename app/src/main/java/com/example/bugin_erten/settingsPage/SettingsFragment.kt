@@ -1,7 +1,8 @@
-package com.example.bugin_erten
+package com.example.bugin_erten.settingsPage
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
+import com.example.bugin_erten.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
