@@ -5,6 +5,7 @@ import com.example.bugin_erten.database.QaraSoz
 import com.example.bugin_erten.database.QaraSozDao
 
 class QaraSozRepository(private val dao: QaraSozDao) {
+
     suspend fun add(qaraSoz: QaraSoz) {
         dao.insert(qaraSoz)
     }

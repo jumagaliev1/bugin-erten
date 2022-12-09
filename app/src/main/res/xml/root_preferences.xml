@@ -34,6 +34,16 @@
             app:summaryOn="You will no longer receive any notifications"
             app:summaryOff="You will receive all notifications"/>
     </PreferenceCategory>
+    <PreferenceCategory app:title="advanced">
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/dark_mode_entries"
+            app:entryValues="@array/dark_mode_values"
+            app:key="@string/dark_mode"
+            app:title="@string/dark_mode"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
 
 
 </PreferenceScreen>
