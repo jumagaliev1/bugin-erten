@@ -7,6 +7,7 @@ import com.example.bugin_erten.network.Api
 import com.example.bugin_erten.network.QaraSozProperty
 
 class QaraSozRepository(private val dao: QaraSozDao) {
+
     suspend fun add(qaraSoz: QaraSoz) {
         dao.insert(qaraSoz)
     }
