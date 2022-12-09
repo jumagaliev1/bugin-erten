@@ -25,7 +25,7 @@ interface ApiService {
 
 }
 
-object MarsApi {
+object Api {
     val retrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
