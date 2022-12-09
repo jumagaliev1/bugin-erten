@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.bugin_erten.database.QaraSoz
-import com.example.bugin_erten.network.MarsApi
 import com.example.bugin_erten.network.QaraSozProperty
 import com.example.bugin_erten.repository.QaraSozRepository
 import kotlinx.coroutines.launch
@@ -135,7 +134,7 @@ class TodayViewModel(
     private fun getProperties() {
         viewModelScope.launch {
             try {
-                val listResult = MarsApi.retrofitService.getProperties()
+                val listResult = repository.getFromNetwork()
                 _property.value = listResult
 
             } catch (e: Exception) {
