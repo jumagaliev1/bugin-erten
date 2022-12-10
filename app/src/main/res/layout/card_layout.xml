@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/card_view"
         android:layout_margin="5dp"
-        app:cardBackgroundColor="#DC6F7C81"
+        app:cardBackgroundColor="?attr/colorSecondaryVariant"
         app:cardCornerRadius="12dp"
         app:cardElevation="3dp"
         app:contentPadding="4dp"
@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/item_title"
                 android:layout_width="236dp"
                 android:layout_height="39dp"
