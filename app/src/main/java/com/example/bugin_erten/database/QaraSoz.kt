@@ -14,4 +14,7 @@ data class QaraSoz(
 
     @ColumnInfo(name = "text")
     var qaraSozText: String = "",
-)
+
+    @ColumnInfo(name = "favorite")
+    var qaraSozFav: Int = 0,
+    )

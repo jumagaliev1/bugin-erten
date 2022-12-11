@@ -28,4 +28,7 @@ interface QaraSozDao {
 
     @Query("SELECT * FROM qarasozder_table")
     fun getAll(): LiveData<List<QaraSoz?>>
+
+    @Query("SELECT * FROM qarasozder_table WHERE favorite = 1")
+    fun getAllFav(): LiveData<List<QaraSoz?>>
 }
