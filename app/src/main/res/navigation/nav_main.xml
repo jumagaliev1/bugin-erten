@@ -30,4 +30,13 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.bugin_erten.settingsPage.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.example.bugin_erten.favPage.FavFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/fragment_fav" >
+        <action
+            android:id="@+id/action_favFragment_to_textFragment"
+            app:destination="@id/textFragment" />
+    </fragment>
 </navigation>

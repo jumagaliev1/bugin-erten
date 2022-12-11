@@ -44,7 +44,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#505050"
+                style="@style/Buttons"
                 android:text="+"
                 android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                 android:id="@+id/btn_fontChange"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:backgroundTint="#505050"
+                style="@style/Buttons"
                 android:text="@{daysViewModel.titleFont}" />
 
             <Button
@@ -60,7 +60,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="5dp"
-                android:backgroundTint="#505050"
+                style="@style/Buttons"
                 android:text="-"
                 android:textStyle="bold" />
 
@@ -68,7 +68,6 @@
                 android:id="@+id/btn_gray"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-
                 android:layout_marginLeft="10dp"
                 android:backgroundTint="#C9DDCE9B"
                 android:insetTop="0dp"
