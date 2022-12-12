@@ -1,5 +1,7 @@
 package com.example.bugin_erten.listPage.text
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bugin_erten.R
 import com.example.bugin_erten.database.QaraSozDatabase
@@ -14,6 +17,7 @@ import com.example.bugin_erten.databinding.FragmentTextBinding
 
 
 class TextFragment : Fragment() {
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,9 +44,20 @@ class TextFragment : Fragment() {
 
         // To use the View Model with data binding, you have to explicitly
         // give the binding object a reference to it.
-        binding.textViewModel = textViewModel
 
+        binding.textViewModel = textViewModel
         binding.setLifecycleOwner(this)
+        binding.btnFav.setOnClickListener {
+            var img: Drawable
+            if (textViewModel.soz.value?.qaraSozFav == 1) {
+                img = binding.btnFav.context.resources.getDrawable(R.drawable.ic_baseline_favorite_border_24)
+            } else {
+                img = binding.btnFav.context.resources.getDrawable(R.drawable.ic_baseline_favorite_24)
+            }
+
+            textViewModel.changeFav()
+            binding.btnFav.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null)
+        }
 
         return binding.root
     }

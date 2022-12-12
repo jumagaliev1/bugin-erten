@@ -10,5 +10,5 @@ class FavViewModel(
     val database: QaraSozDao,
     application: Application
 ) : AndroidViewModel(application) {
-    val qaraSozList: LiveData<List<QaraSoz?>> = database.getAll()
+    val qaraSozList: LiveData<List<QaraSoz?>> = database.getAllFav()
 }
